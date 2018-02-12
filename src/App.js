@@ -42,6 +42,9 @@ class Container extends Component{
 
   handleDelete(index){
     let tempTodo = this.state.todo;
+    if(this.state.checked.indexOf(index) !== -1){
+       this.handleUnSelect(index)
+    }
     tempTodo.splice(index,1);
     this.setState({
       todo: tempTodo
@@ -52,6 +55,10 @@ class Container extends Component{
   handleFinish(index){
     let tempTodo = this.state.todo,
     rs=tempTodo.splice(index,1).toString();
+        if(this.state.checked.indexOf(index) !== -1){
+       this.handleUnSelect(index)
+    }
+    
     this.setState({
       todo: tempTodo,
       finish:[...this.state.finish,rs]
